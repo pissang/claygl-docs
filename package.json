@@ -1,0 +1,11 @@
+{
+  "name": "claygl-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "update": "cp -rf ../claygl/doc/ ./"
+  },
+  "author": "",
+  "license": "ISC"
+}
