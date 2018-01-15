@@ -130,6 +130,7 @@ tt, code, kbd, samp {
   float: right;
   min-width: 360px;
   width: calc(100% - 240px);
+  margin-top: 60px;
 }
 
 header {
@@ -161,6 +162,7 @@ nav.side {
   overflow: auto;
   position: fixed;
   height: 100%;
+  margin-top: 60px;
 }
 
 nav.side h3 {
@@ -649,4 +651,7 @@ span.param-type, .params td .param-type, .param-type dd {
 
 #logo {
   height: 20px;
+}
+nav.navbar {
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
