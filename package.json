@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "update": "cp -rf ../claygl/doc/ ./"
+    "update": "rm -rf ./api/ && jsdoc -R ../claygl/README.md -c jsdoc.json &&  cp -R ../claygl/screenshot ../claygl/asset ./api/"
   },
   "author": "",
   "license": "ISC"

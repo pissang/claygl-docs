@@ -1,0 +1,18 @@
+{
+    "source": {
+        "include": ["../claygl/src"],
+        "includePattern": ".+\\.js(doc)?$",
+        "exclude": ["../claygl/src/dep/glmatrix.js"]
+    },
+    "opts": {
+        "template": "template/docdash",
+        "encoding": "utf8",
+        "destination": "./api/",
+        "recurse": true
+    },
+    "plugins": ["plugins/markdown"],
+    "templates": {
+        "showInheritedInNav": false,
+        "includeDate": false
+    }
+}
