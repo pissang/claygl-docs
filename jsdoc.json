@@ -13,6 +13,7 @@
     "plugins": ["plugins/markdown"],
     "templates": {
         "showInheritedInNav": false,
-        "includeDate": false
+        "includeDate": false,
+        "static": true
     }
 }

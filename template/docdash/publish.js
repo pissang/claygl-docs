@@ -309,7 +309,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
 
                     members.forEach(function (member) {
                         if (!member.scope === 'static') return;
-                        itemsNav += "<li data-type='member'>";
+                        itemsNav += "<li data-type='member' class='item'>";
                         itemsNav += linkto(member.longname, member.name);
                         itemsNav += "</li>";
                     });
@@ -321,7 +321,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                     itemsNav += "<ul class='methods'>";
 
                     methods.forEach(function (method) {
-                        itemsNav += "<li data-type='method'>";
+                        itemsNav += "<li data-type='method' class='item'>";
                         itemsNav += linkto(method.longname, method.name);
                         itemsNav += "</li>";
                     });
@@ -335,7 +335,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
         });
 
         if (itemsNav !== '') {
-            nav += '<h3>' + itemHeading + '</h3><ul>' + itemsNav + '</ul>';
+            nav += '<h3>' + itemHeading + '</h3><ul class="list">' + itemsNav + '</ul>';
         }
     }
 
@@ -362,12 +362,11 @@ function linktoExternal(longName, name) {
  * @param {array<object>} members.tutorials
  * @param {array<object>} members.events
  * @param {array<object>} members.interfaces
- * @return {s
- ring} The HTML for the navigation sidebar.
+ * @return {string} The HTML for the navigation sidebar.
  */
 
 function buildNav(members) {
-    var nav = '<h2><a href="index.html">Home</a></h2>';
+    var nav = '<input class="search" placeholder="Search" type="text" />';
     var seen = {};
     var seenTutorials = {};
 

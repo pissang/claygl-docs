@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "update": "rm -rf ./api/ && jsdoc -R ../claygl/README.md -c jsdoc.json &&  cp -R ../claygl/screenshot ../claygl/asset ./api/"
+    "build": "rm -rf ./api/ && jsdoc -R ../claygl/README.md -c jsdoc.json &&  cp -R ../claygl/screenshot ../claygl/asset ./api/"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "san": "^3.4.2"
+  }
 }
