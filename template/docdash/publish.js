@@ -302,7 +302,8 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                 itemsNav += '<li>' + linktoFn('', item.name);
                 itemsNav += '</li>';
             } else if ( !hasOwnProp.call(itemsSeen, item.longname) ) {
-                itemsNav += '<li>' + linktoFn(item.longname, item.name.replace(/^module:/, ''));
+                itemsNav += '<li><i class="iconfont"></i>'
+                    + linktoFn(item.longname, item.name.replace(/^module:/, ''));
 
                 if (docdash.static && members.find(function (m) { return m.scope === 'static'; } )) {
                     itemsNav += "<ul class='members'>";
@@ -366,7 +367,11 @@ function linktoExternal(longName, name) {
  */
 
 function buildNav(members) {
-    var nav = '<input class="search" placeholder="Search" type="text" />';
+    var nav = '<input class="search" placeholder="Search" type="text" />'
+        + '<div class="toolbar">\
+            <i class="iconfont icon-nodecollapse" id="expand-all" title="Expand all"></i>\
+            <i class="iconfont icon-nodeexpand" id="collapse-all"  title="Collapse all"></i>\
+        </div>'
     var seen = {};
     var seenTutorials = {};
 
@@ -490,7 +495,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     var staticFiles = fs.ls(fromDir, 3);
 
     staticFiles.forEach(function(fileName) {
-        var toDir = fs.toDir( fileName.replace(fromDir, outdir) );
+        var toDir = fs.toDir(fileName.replace(fromDir, outdir) );
         fs.mkPath(toDir);
         fs.copyFileSync(fileName, toDir);
     });

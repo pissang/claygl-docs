@@ -1,5 +1,7 @@
 
 (function () {
+
+    /// Search
     function throttle(func, wait, options) {
         var context, args, result;
         var timeout = null;
@@ -30,7 +32,12 @@
             return result;
         };
     };
-    var topLevelList = $('#nav .list li').map(function (idx, dom) {
+
+
+    var $listContainer = $('#sidenav');
+    var $listAll = $('#sidenav .list>li');
+
+    var topLevelList = $listAll.map(function (idx, dom) {
         return {
             dom: dom,
             text: $(dom).children('a')[0].innerHTML.toLowerCase(),
@@ -44,7 +51,7 @@
         }
     });
 
-    function update() {
+    function updateSearch() {
         var text = this.value.toLowerCase();
         topLevelList.each(function (idx, item) {
 
@@ -59,7 +66,41 @@
 
             item.dom.style.display = parentDisplay ? 'block' : 'none';
         });
+
+        expandAll();
     }
 
-    $('#nav .search').on('keyup', throttle(update, 200));
+    $('#sidenav .search').on('keyup', throttle(updateSearch, 200));
+
+
+     /// Fold and unfold
+
+     function collapseAll() {
+        $listAll.addClass('clay-collapse')
+     }
+     function expandAll() {
+        $listAll.removeClass('clay-collapse')
+     }
+
+     $('#collapse-all').click(collapseAll);
+     $('#expand-all').click(expandAll);
+
+    var file = location.pathname.split('/').pop().trim();
+    $listAll.each(function (idx, dom) {
+        var $dom = $(dom);
+        // Only expand the current page.
+        if ($dom.children('a').attr('href').trim() !== file) {
+            $dom.addClass('clay-collapse');
+        }
+        else {
+            $listContainer.scrollTop(
+                Math.max($dom.offset().top - 200, 0)
+            );
+        }
+
+        $dom.children('i').click(function () {
+            $dom.toggleClass('clay-collapse');
+        });
+    });
+
 })()

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Skybox - ClayGL Documentation</title>
+    <title>particle - ClayGL Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -56,7 +56,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Skybox</h1>
+    <h1 class="page-title">particle</h1>
     
 
     
@@ -69,9 +69,9 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="clay.html">clay</a><a href="clay.plugin.html">.plugin</a>.</span>
+            <span class="ancestors"><a href="clay.html">clay</a>.</span>
         
-        Skybox
+        particle
         </h2>
         
     
@@ -82,21 +82,12 @@
     
         
 
-    
-
-    <h4 class="name" id="Skybox"><span class="type-signature"></span>new Skybox<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
 <dl class="details">
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugin_Skybox.js.html">plugin/Skybox.js</a>, <a href="plugin_Skybox.js.html#line9">line 9</a>
+        <a href="claygl.js.html">claygl.js</a>, <a href="claygl.js.html#line12">line 12</a>
     </li></ul></dd>
     
 
@@ -134,48 +125,9 @@
 
 
 
+        
 
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>var skyTex = new clay.TextureCube();
-    skyTex.load({
-        'px': 'assets/textures/sky/px.jpg',
-        'nx': 'assets/textures/sky/nx.jpg'
-        'py': 'assets/textures/sky/py.jpg'
-        'ny': 'assets/textures/sky/ny.jpg'
-        'pz': 'assets/textures/sky/pz.jpg'
-        'nz': 'assets/textures/sky/nz.jpg'
-    });
-    var skybox = new clay.plugin.Skybox({
-        scene: scene
-    });
-    skybox.material.set('environmentMap', skyTex);</code></pre>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     
     </div>
 
@@ -184,675 +136,32 @@
     
 
     
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="clay.particle.Emitter.html">Emitter</a></dt>
+            <dd></dd>
+        
+            <dt><a href="clay.particle.Field.html">Field</a></dt>
+            <dd></dd>
+        
+            <dt><a href="clay.particle.ForceField.html">ForceField</a></dt>
+            <dd></dd>
+        
+            <dt><a href="clay.particle.Particle.html">Particle</a></dt>
+            <dd></dd>
+        
+            <dt><a href="clay.particle.ParticleRenderable.html">ParticleRenderable</a></dt>
+            <dd></dd>
+        </dl>
+    
 
      
 
     
 
     
-        <h3 class="subsection-title">Members</h3>
 
-        
-            
-<h4 class="name" id="scene"><span class="type-signature"></span>scene<span class="type-signature"> :<a href="clay.Scene.html">clay.Scene</a></span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugin_Skybox.js.html">plugin/Skybox.js</a>, <a href="plugin_Skybox.js.html#line43">line 43</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><a href="clay.Scene.html">clay.Scene</a></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-
-        
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id="attachScene"><span class="type-signature"></span>attachScene<span class="signature">(scene)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugin_Skybox.js.html">plugin/Skybox.js</a>, <a href="plugin_Skybox.js.html#line66">line 66</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Attach the skybox to the scene</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>scene</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="clay.Scene.html">clay.Scene</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="detachScene"><span class="type-signature"></span>detachScene<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugin_Skybox.js.html">plugin/Skybox.js</a>, <a href="plugin_Skybox.js.html#line78">line 78</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Detach from scene</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="dispose"><span class="type-signature"></span>dispose<span class="signature">(renderer)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugin_Skybox.js.html">plugin/Skybox.js</a>, <a href="plugin_Skybox.js.html#line90">line 90</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Dispose skybox</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>renderer</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="clay.Renderer.html">clay.Renderer</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getEnvironmentMap"><span class="type-signature"></span>getEnvironmentMap<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="clay.TextureCube.html">clay.TextureCube</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugin_Skybox.js.html">plugin/Skybox.js</a>, <a href="plugin_Skybox.js.html#line105">line 105</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Get environment map</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="clay.TextureCube.html">clay.TextureCube</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="setEnvironmentMap"><span class="type-signature"></span>setEnvironmentMap<span class="signature">(envMap)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plugin_Skybox.js.html">plugin/Skybox.js</a>, <a href="plugin_Skybox.js.html#line98">line 98</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Set environment map</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>envMap</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="clay.TextureCube.html">clay.TextureCube</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
     
 
     
