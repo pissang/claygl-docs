@@ -141,7 +141,7 @@
 </ul><h3>Namespaces</h3><ul class="list"><li><i class="iconfont"></i><a href="clay.html">clay</a></li>
 <li><i class="iconfont"></i><a href="clay.animation.html">animation</a></li>
 <li><i class="iconfont"></i><a href="clay.animation.easing.html">easing</a><ul class='methods'><li data-type='method' class='item'><a href="clay.animation.easing.html#.backIn">backIn</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.backInOut">backInOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.backOut">backOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.bounceIn">bounceIn</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.bounceInOut">bounceInOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.bounceOut">bounceOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.circularIn">circularIn</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.circularInOut">circularInOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.circularOut">circularOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.cubicIn">cubicIn</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.cubicInOut">cubicInOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.cubicOut">cubicOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.elasticIn">elasticIn</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.elasticInOut">elasticInOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.elasticOut">elasticOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.exponentialIn">exponentialIn</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.exponentialInOut">exponentialInOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.exponentialOut">exponentialOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.linear">linear</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.quadraticIn">quadraticIn</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.quadraticInOut">quadraticInOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.quadraticOut">quadraticOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.quarticIn">quarticIn</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.quarticInOut">quarticInOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.quarticOut">quarticOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.quinticIn">quinticIn</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.quinticInOut">quinticInOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.quinticOut">quinticOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.sinusoidalIn">sinusoidalIn</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.sinusoidalInOut">sinusoidalInOut</a></li><li data-type='method' class='item'><a href="clay.animation.easing.html#.sinusoidalOut">sinusoidalOut</a></li></ul></li>
-<li><i class="iconfont"></i><a href="clay.application.html">application</a></li>
+<li><i class="iconfont"></i><a href="clay.application.html">application</a><ul class='methods'><li data-type='method' class='item'><a href="clay.application.html#.create">create</a></li></ul></li>
 <li><i class="iconfont"></i><a href="clay.async.html">async</a></li>
 <li><i class="iconfont"></i><a href="clay.camera.html">camera</a></li>
 <li><i class="iconfont"></i><a href="clay.compositor.html">compositor</a><ul class='methods'><li data-type='method' class='item'><a href="clay.compositor.html#.createCompositor">createCompositor</a></li></ul></li>
@@ -264,12 +264,18 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
+
+    
+        <h3 class="subsection-title">Methods</h3>
 
         
             
-<h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="type-signature"></span></h4>
 
+    
+
+    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">(dom, appNS)</span><span class="type-signature"> &rarr; {<a href="clay.application.App3D.html">clay.application.App3D</a>}</span></h4>
+
+    
 
 
 
@@ -328,6 +334,8 @@
 
 
 
+
+
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>clay.application.create('#app', {
@@ -341,9 +349,620 @@
 
 
 
-        
+
+    <h5>Parameters:</h5>
     
 
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dom</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLDomElement</span>
+|
+
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Container dom element or a selector string that can be used in <code>querySelector</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>appNS</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>init</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Initialization callback that will be called when initing app.
+                     You can return a promise in init to start the loop asynchronously when the promise is resolved.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>loop</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Loop callback that will be called each frame.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beforeRender</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>afterRender</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Container width.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Container height.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>devicePixelRatio</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>graphic</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Graphic configuration including shadow, postEffect</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>shadow</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>If enable shadow</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>linear</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>If use linear space</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tonemapping</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>If enable ACES tone mapping.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>If enable mouse/touch event. It will slow down the system if geometries are complex.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="clay.application.App3D.html">clay.application.App3D</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
     
 
     
