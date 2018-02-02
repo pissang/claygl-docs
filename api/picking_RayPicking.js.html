@@ -263,13 +263,7 @@ var RayPicking = Base.extend(
                     || node.geometry.pick
                 )
             ) {
-                if (node.geometry.vertexCount > 1e4) {
-                    console.time('intersection');
-                }
                 this._intersectRenderable(node, out);
-                if (node.geometry.vertexCount > 1e4) {
-                    console.timeEnd('intersection');
-                }
             }
         }
         for (var i = 0; i &lt; node._children.length; i++) {
@@ -370,14 +364,13 @@ var RayPicking = Base.extend(
                 }
             }
 
-            var finalPosAttr = isSkinnedMesh
-                ? geometry.attributes.skinnedPosition
-                : positionAttr;
-
             for (var i = 0; i &lt; indices.length; i += 3) {
                 var i1 = indices[i];
                 var i2 = indices[i + 1];
                 var i3 = indices[i + 2];
+                var finalPosAttr = isSkinnedMesh
+                    ? geometry.attributes.skinnedPosition
+                    : positionAttr;
                 finalPosAttr.get(i1, v1.array);
                 finalPosAttr.get(i2, v2.array);
                 finalPosAttr.get(i3, v3.array);
