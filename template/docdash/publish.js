@@ -300,7 +300,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
 
             if ( !hasOwnProp.call(item, 'longname') ) {
                 itemsNav += '<li>' + linktoFn('', item.name);
-                itemsNav += '</li>';
+                itemsNav += '</li>\n';
             } else if ( !hasOwnProp.call(itemsSeen, item.longname) ) {
                 itemsNav += '<li><i class="iconfont"></i>'
                     + linktoFn(item.longname, item.name.replace(/^module:/, ''));
@@ -330,7 +330,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                     itemsNav += "</ul>";
                 }
 
-                itemsNav += '</li>';
+                itemsNav += '</li>\n';
                 itemsSeen[item.longname] = true;
             }
         });

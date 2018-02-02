@@ -81,9 +81,9 @@ h4 {
 h4.name {
   color: #fff;
   background: #506189;
-  box-shadow: 0 .25em .5em #d3d3d3;
+  /* box-shadow: 0 .25em .5em #d3d3d3;
   border-top: 1px solid #d3d3d3;
-  border-bottom: 1px solid #d3d3d3;
+  border-bottom: 1px solid #d3d3d3; */
   margin: 1.5em 0 0.5em;
   padding: .75em 0 .75em 10px;
 }
@@ -654,4 +654,55 @@ span.param-type, .params td .param-type, .param-type dd {
 }
 nav.navbar {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.toolbar i.iconfont {
+  cursor: pointer;
+}
+
+.search {
+  font-size: 20px;
+  display: block;
+  margin: 10px 0px;
+  padding: 5px 5px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  outline: none;
+}
+
+.search:focus {
+  border-bottom: 1px solid #4a4f8f;
+}
+
+#sidenav .list>li {
+  margin-bottom: 5px;
+}
+
+#sidenav .list>ul {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+#sidenav .list>li>i.iconfont {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: -7px;
+  cursor: pointer;
+}
+#sidenav .list>li>i.iconfont:before {
+  content: "\e795";
+}
+#sidenav .list>li>a {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+#sidenav .list>li.clay-collapse ul {
+  display: none;
+}
+
+#sidenav .list>li.clay-collapse>i.iconfont:before {
+  content: "\e794";
 }
