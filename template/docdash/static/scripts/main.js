@@ -55,12 +55,16 @@
         var text = this.value.toLowerCase();
         topLevelList.each(function (idx, item) {
 
-            var parentDisplay = item.text.indexOf(text) >= 0;
+            var parentMatch = item.text.indexOf(text) >= 0;
+            var parentDisplay = parentMatch;
 
             item.children.each(function (idx, subitem) {
                 var display = !text || subitem.text.indexOf(text) >= 0;
-                subitem.dom.style.display = display ? 'block' : 'none';
 
+                // Display if parent text match or self text match.
+                subitem.dom.style.display = (parentMatch || display) ? 'block' : 'none';
+
+                // Display parent if any of it's children displays.
                 parentDisplay = parentDisplay || display;
             });
 
