@@ -72,10 +72,26 @@ h3 {
   margin: 1.2em 0 .3em;
 }
 
+h3.subsection-title {
+  font-size: 24px;
+  margin: 1.2em 0 .3em;
+  color: #890101;
+  font-weight: bold;
+}
+
 h4 {
   font-size: 18px;
   margin: 1em 0 .2em;
   color: #4d4e53;
+}
+
+h4 a {
+  text-decoration: none;
+  border-bottom: none;
+}
+
+h4 a:hover {
+  text-decoration: underline;
 }
 
 h4.name {
@@ -100,6 +116,16 @@ h5, .container-overview .subsection-title {
   font-size: 120%;
   letter-spacing: -0.01em;
   margin: 8px 0 3px 0;
+}
+
+.container-overview {
+  margin-bottom: 50px;
+}
+
+.container-overview .description h3,
+.container-overview .description h4,
+.container-overview .description h5 {
+  color: #9c9c9c;
 }
 
 h6 {
