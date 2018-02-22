@@ -46,9 +46,9 @@
                 return {
                     dom: dom,
                     text: $(dom).children('a')[0].innerHTML.toLowerCase()
-                }
+                };
             })
-        }
+        };
     });
 
     function updateSearch() {
@@ -77,17 +77,17 @@
     $('#sidenav .search').on('keyup', throttle(updateSearch, 200));
 
 
-     /// Fold and unfold
+    /// Fold and unfold
 
-     function collapseAll() {
+    function collapseAll() {
         $listAll.addClass('clay-collapse')
-     }
-     function expandAll() {
+    }
+    function expandAll() {
         $listAll.removeClass('clay-collapse')
-     }
+    }
 
-     $('#collapse-all').click(collapseAll);
-     $('#expand-all').click(expandAll);
+    $('#collapse-all').click(collapseAll);
+    $('#expand-all').click(expandAll);
 
     var file = location.pathname.split('/').pop().trim();
     $listAll.each(function (idx, dom) {
@@ -107,4 +107,4 @@
         });
     });
 
-})()
+})();
