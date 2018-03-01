@@ -187,8 +187,8 @@ nav.side {
   background: #fff;
   overflow: auto;
   position: fixed;
-  height: 100%;
-  margin-top: 60px;
+  top: 60px;
+  bottom: 0px;
 }
 
 nav.side h3 {

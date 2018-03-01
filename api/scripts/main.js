@@ -46,9 +46,9 @@
                 return {
                     dom: dom,
                     text: $(dom).children('a')[0].innerHTML.toLowerCase()
-                }
+                };
             })
-        }
+        };
     });
 
     function updateSearch() {
@@ -60,8 +60,11 @@
 
             item.children.each(function (idx, subitem) {
                 var display = !text || subitem.text.indexOf(text) >= 0;
+
+                // Display if parent text match or self text match.
                 subitem.dom.style.display = (parentMatch || display) ? 'block' : 'none';
 
+                // Display parent if any of it's children displays.
                 parentDisplay = parentDisplay || display;
             });
 
@@ -74,17 +77,17 @@
     $('#sidenav .search').on('keyup', throttle(updateSearch, 200));
 
 
-     /// Fold and unfold
+    /// Fold and unfold
 
-     function collapseAll() {
+    function collapseAll() {
         $listAll.addClass('clay-collapse')
-     }
-     function expandAll() {
+    }
+    function expandAll() {
         $listAll.removeClass('clay-collapse')
-     }
+    }
 
-     $('#collapse-all').click(collapseAll);
-     $('#expand-all').click(expandAll);
+    $('#collapse-all').click(collapseAll);
+    $('#expand-all').click(expandAll);
 
     var file = location.pathname.split('/').pop().trim();
     $listAll.each(function (idx, dom) {
@@ -104,4 +107,4 @@
         });
     });
 
-})()
+})();
