@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>prePass/EnvironmentMap.js - ClayGL Documentation</title>
+    <title>GamepadControl - ClayGL Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -179,162 +179,1025 @@
 
 <div id="main">
     
-    <h1 class="page-title">prePass/EnvironmentMap.js</h1>
+    <h1 class="page-title">GamepadControl</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import Base from '../core/Base';
-import Vector3 from '../math/Vector3';
-import PerspectiveCamera from '../camera/Perspective';
-import FrameBuffer from '../FrameBuffer';
+        <h2>
+            <span class="ancestors"><a href="clay.html">clay</a><a href="clay.plugin.html">.plugin</a>.</span>
+        
+        GamepadControl
+        </h2>
+        
+    
+</header>
 
-var targets = ['px', 'nx', 'py', 'ny', 'pz', 'nz'];
+<article>
+    <div class="container-overview">
+    
+        
 
-/**
- * Pass rendering scene to a environment cube map
- *
- * @constructor clay.prePass.EnvironmentMap
- * @extends clay.core.Base
- * @example
- *     // Example of car reflection
- *     var envMap = new clay.TextureCube({
- *         width: 256,
- *         height: 256
- *     });
- *     var envPass = new clay.prePass.EnvironmentMap({
- *         position: car.position,
- *         texture: envMap
- *     });
- *     var carBody = car.getChildByName('body');
- *     carBody.material.enableTexture('environmentMap');
- *     carBody.material.set('environmentMap', envMap);
- *     ...
- *     animation.on('frame', function(frameTime) {
- *         envPass.render(renderer, scene);
- *         renderer.render(scene, camera);
- *     });
- */
-var EnvironmentMapPass = Base.extend(function() {
-    var ret = /** @lends clay.prePass.EnvironmentMap# */ {
-        /**
-         * Camera position
-         * @type {clay.Vector3}
-         * @memberOf clay.prePass.EnvironmentMap#
-         */
-        position: new Vector3(),
-        /**
-         * Camera far plane
-         * @type {number}
-         * @memberOf clay.prePass.EnvironmentMap#
-         */
-        far: 1000,
-        /**
-         * Camera near plane
-         * @type {number}
-         * @memberOf clay.prePass.EnvironmentMap#
-         */
-        near: 0.1,
-        /**
-         * Environment cube map
-         * @type {clay.TextureCube}
-         * @memberOf clay.prePass.EnvironmentMap#
-         */
-        texture: null,
+    
 
-        /**
-         * Used if you wan't have shadow in environment map
-         * @type {clay.prePass.ShadowMap}
-         */
-        shadowMapPass: null,
-    };
-    var cameras = ret._cameras = {
-        px: new PerspectiveCamera({ fov: 90 }),
-        nx: new PerspectiveCamera({ fov: 90 }),
-        py: new PerspectiveCamera({ fov: 90 }),
-        ny: new PerspectiveCamera({ fov: 90 }),
-        pz: new PerspectiveCamera({ fov: 90 }),
-        nz: new PerspectiveCamera({ fov: 90 })
-    };
-    cameras.px.lookAt(Vector3.POSITIVE_X, Vector3.NEGATIVE_Y);
-    cameras.nx.lookAt(Vector3.NEGATIVE_X, Vector3.NEGATIVE_Y);
-    cameras.py.lookAt(Vector3.POSITIVE_Y, Vector3.POSITIVE_Z);
-    cameras.ny.lookAt(Vector3.NEGATIVE_Y, Vector3.NEGATIVE_Z);
-    cameras.pz.lookAt(Vector3.POSITIVE_Z, Vector3.NEGATIVE_Y);
-    cameras.nz.lookAt(Vector3.NEGATIVE_Z, Vector3.NEGATIVE_Y);
+    <h4 class="name" id="GamepadControl">
+        <a href="#GamepadControl">#</a>
+        <span class="type-signature"></span>new GamepadControl<span class="signature">()</span><span class="type-signature"></span>
+    </h4>
 
-    // FIXME In windows, use one framebuffer only renders one side of cubemap
-    ret._frameBuffer = new FrameBuffer();
+    
 
-    return ret;
-},  /** @lends clay.prePass.EnvironmentMap# */ {
-    /**
-     * @param  {string} target
-     * @return  {clay.Camera}
-     */
-    getCamera: function (target) {
-        return this._cameras[target];
-    },
-    /**
-     * @param  {clay.Renderer} renderer
-     * @param  {clay.Scene} scene
-     * @param  {boolean} [notUpdateScene=false]
-     */
-    render: function(renderer, scene, notUpdateScene) {
-        var _gl = renderer.gl;
-        if (!notUpdateScene) {
-            scene.update();
-        }
-        // Tweak fov
-        // http://the-witness.net/news/2012/02/seamless-cube-map-filtering/
-        var n = this.texture.width;
-        var fov = 2 * Math.atan(n / (n - 0.5)) / Math.PI * 180;
 
-        for (var i = 0; i &lt; 6; i++) {
-            var target = targets[i];
-            var camera = this._cameras[target];
-            Vector3.copy(camera.position, this.position);
 
-            camera.far = this.far;
-            camera.near = this.near;
-            camera.fov = fov;
 
-            if (this.shadowMapPass) {
-                camera.update();
+<dl class="details">
 
-                // update boundingBoxLastFrame
-                var bbox = scene.getBoundingBox();
-                bbox.applyTransform(camera.viewMatrix);
-                scene.viewBoundingBoxLastFrame.copy(bbox);
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugin_GamepadControl.js.html">plugin/GamepadControl.js</a>, <a href="plugin_GamepadControl.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
 
-                this.shadowMapPass.render(renderer, scene, camera, true);
-            }
-            this._frameBuffer.attach(
-                this.texture, _gl.COLOR_ATTACHMENT0,
-                _gl.TEXTURE_CUBE_MAP_POSITIVE_X + i
-            );
-            this._frameBuffer.bind(renderer);
-            renderer.render(scene, camera, true);
-            this._frameBuffer.unbind(renderer);
-        }
-    },
-    /**
-     * @param {clay.Renderer} renderer
-     */
-    dispose: function (renderer) {
-        this._frameBuffer.dispose(renderer);
-    }
-});
+    
 
-export default EnvironmentMapPass;
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Gamepad Control plugin.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>init: function(app) {
+    this._gamepadControl = new clay.plugin.GamepadControl({
+        target: camera,
+        onStandardGamepadReady: customCallback
+    });
+  },
+
+  loop: function(app) {
+    this._gamepadControl.update(app.frameTime);
+  }</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="lookAroundSpeed">
+    <a href="#lookAroundSpeed">#</a>
+    <span class="type-signature"></span>lookAroundSpeed<span class="type-signature"> :number</span>
+</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugin_GamepadControl.js.html">plugin/GamepadControl.js</a>, <a href="plugin_GamepadControl.js.html#line45">line 45</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Look around speed.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="moveSpeed">
+    <a href="#moveSpeed">#</a>
+    <span class="type-signature"></span>moveSpeed<span class="type-signature"> :number</span>
+</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugin_GamepadControl.js.html">plugin/GamepadControl.js</a>, <a href="plugin_GamepadControl.js.html#line38">line 38</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Move speed.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="target">
+    <a href="#target">#</a>
+    <span class="type-signature"></span>target<span class="type-signature"> :<a href="clay.Node.html">clay.Node</a></span>
+</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugin_GamepadControl.js.html">plugin/GamepadControl.js</a>, <a href="plugin_GamepadControl.js.html#line31">line 31</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Scene node to control, mostly it is a camera.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="clay.Node.html">clay.Node</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="timeline">
+    <a href="#timeline">#</a>
+    <span class="type-signature"></span>timeline<span class="type-signature"> :<a href="clay.Timeline.html">clay.Timeline</a></span>
+</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugin_GamepadControl.js.html">plugin/GamepadControl.js</a>, <a href="plugin_GamepadControl.js.html#line59">line 59</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Timeline.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="clay.Timeline.html">clay.Timeline</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="up">
+    <a href="#up">#</a>
+    <span class="type-signature"></span>up<span class="type-signature"> :<a href="clay.Vector3.html">clay.Vector3</a></span>
+</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugin_GamepadControl.js.html">plugin/GamepadControl.js</a>, <a href="plugin_GamepadControl.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Up axis.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="clay.Vector3.html">clay.Vector3</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="dispose">
+        <a href="#dispose">#</a>
+        <span class="type-signature"></span>dispose<span class="signature">()</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugin_GamepadControl.js.html">plugin/GamepadControl.js</a>, <a href="plugin_GamepadControl.js.html#line132">line 132</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Dispose control.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="init">
+        <a href="#init">#</a>
+        <span class="type-signature"></span>init<span class="signature">()</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugin_GamepadControl.js.html">plugin/GamepadControl.js</a>, <a href="plugin_GamepadControl.js.html#line112">line 112</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Init. control.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="onGamepadDisconnected">
+        <a href="#onGamepadDisconnected">#</a>
+        <span class="type-signature"></span>onGamepadDisconnected<span class="signature">()</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugin_GamepadControl.js.html">plugin/GamepadControl.js</a>, <a href="plugin_GamepadControl.js.html#line73">line 73</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Function to be called when a gamepad is disconnected.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="onStandardGamepadReady">
+        <a href="#onStandardGamepadReady">#</a>
+        <span class="type-signature"></span>onStandardGamepadReady<span class="signature">()</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugin_GamepadControl.js.html">plugin/GamepadControl.js</a>, <a href="plugin_GamepadControl.js.html#line66">line 66</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Function to be called when a standard gamepad is ready to use.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="update">
+        <a href="#update">#</a>
+        <span class="type-signature"></span>update<span class="signature">(frameTime)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugin_GamepadControl.js.html">plugin/GamepadControl.js</a>, <a href="plugin_GamepadControl.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Control's update. Should be invoked every frame.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>frameTime</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Frame time.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
